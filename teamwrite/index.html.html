@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TeamWrite</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">TeamWrite</div>
+      <div class="user-row">
+        <div class="avatar" id="cur-avatar">?</div>
+        <input type="text" id="username-input" placeholder="Your name" maxlength="20" />
+      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="create">Create</button>
+      <button class="tab" data-tab="workspace">Team workspace <span class="tab-badge" id="doc-count">0</span></button>
+    </div>
+
+    <!-- CREATE PANEL -->
+    <div class="panel active" id="panel-create">
+      <div class="form-row">
+        <div class="field">
+          <label>Content type</label>
+          <select id="type">
+            <option>Email</option>
+            <option>Status report</option>
+            <option>Meeting summary</option>
+            <option>Project brief</option>
+            <option>Announcement</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tone</label>
+          <select id="tone">
+            <option>Professional</option>
+            <option>Friendly</option>
+            <option>Concise</option>
+            <option>Formal</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>What should it be about?</label>
+        <textarea id="brief" placeholder="E.g. Quarterly update email to stakeholders: project on track, launch moved to March 15…"></textarea>
+      </div>
+      <button class="btn-primary" id="gen-btn">Generate</button>
+
+      <div id="output-area" class="output-area hidden">
+        <div class="output-box" id="output-text"></div>
+        <div class="output-actions">
+          <button class="btn-secondary" id="copy-btn">Copy</button>
+          <button class="btn-secondary" id="save-btn">Save to workspace</button>
+          <button class="btn-secondary" id="export-btn">Export .txt</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORKSPACE PANEL -->
+    <div class="panel hidden" id="panel-workspace">
+      <div class="filter-row">
+        <select id="filter-type">
+          <option value="">All types</option>
+          <option>Email</option>
+          <option>Status report</option>
+          <option>Meeting summary</option>
+          <option>Project brief</option>
+          <option>Announcement</option>
+        </select>
+        <select id="filter-author">
+          <option value="">All authors</option>
+        </select>
+        <span class="count-pill" id="filter-count">0 docs</span>
+      </div>
+      <div id="doc-list"></div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
